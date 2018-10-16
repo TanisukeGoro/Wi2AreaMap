@@ -13,7 +13,7 @@ URL_ID1 = '&search_type=xlos&pageID=0/ClassSkeletownController.php?action=area&e
 # ------
 
 def ReadTable(url):
-    # 初期ページの設定
+    # set the initial page No.
     last_page = 1
     url_ini = url + str(last_page)
     # 各カテゴリにおけるページ数の取得
@@ -24,7 +24,6 @@ def ReadTable(url):
     regex = r'^(?=\[.*[0-9]*\]|[0-9])(?!.*[a-zA-Z]).*$'
     pattern = re.compile(regex)
 
-    # 初回でページ数を探索
     # ditamin the number of pages at first page
     if last_page == 1:
         for elem in elems:
@@ -118,6 +117,7 @@ if __name__ == "__main__" :
             # print (str(prefecture_id) + " :" + str(category_id))
             ReadTable(URL_path)
             # progress_bar(progress_count)
+
 fresh()
 
 

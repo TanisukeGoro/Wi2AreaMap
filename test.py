@@ -4,6 +4,10 @@ import re
 import sys
 import os
 
+
+
+
+
 res = requests.get('http://300.wi2.co.jp/area/1/?prefecture=11&str_category=a%253A1%253A%257Bi%253A0%253Bs%253A1%253A%25227%2522%253B%257D&str_small_category=a%253A3%253A%257Bi%253A0%253Bs%253A3%253A%25227%252C1%2522%253Bi%253A1%253Bs%253A3%253A%25227%252C2%2522%253Bi%253A2%253Bs%253A3%253A%25227%252C3%2522%253B%257D&search_type=xlos&pageID=0/ClassSkeletownController.php?action=area&emx=1&isp=&postKey=099ababb4bc7d8c7b4eb375983b2bd9a')
 res.raise_for_status()
 soup = bs4.BeautifulSoup(res.text, "html.parser")
@@ -16,16 +20,21 @@ lastPage = 1
 fo = open('Wi2log.txt', 'w')
 sys.stdout = fo
 pattern = re.compile(regex)
-for elem in elems:
-    match_txt = pattern.search(elem.text)
-    if match_txt:
-        integer = match_txt.group()
-        integer = integer.replace('[', '').replace(']', '')
-        pageNo = int(integer)
-        if pageNo > lastPage: lastPage = pageNo
+# 初回でページ数を探索
+if last_page == 1:
+    for elem in elems:
+        match_txt = pattern.search(elem.text)
+        if match_txt:
+            integer = match_txt.group()
+            integer = integer.replace('[', '').replace(']', '')
+            pageNo = int(integer)
+            if pageNo > lastPage: lastPage = pageNo
+
 
 
 print(lastPage)
+
+
     # if not "地図" in elem.text:
     #     print(elem.text)
 

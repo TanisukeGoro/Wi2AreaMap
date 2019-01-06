@@ -44,7 +44,7 @@ def ReadTable(url):
     df = pd.read_html(url_ini)
     df[0] = df[0].drop(1)
 
-    out_put_file = "/Users/abekeishi/Public/Programing/Python3/Wi2Map" \
+    out_put_file = "/Users/abekeishi/Public/2.Programing/Python3/Wi2Map" \
                 "/out_put_data/" + df[0].iat[0, 1] + '_' + df[0].iat[1, 1] \
                 + ".csv"
     # print('Out put > ' + df[0].iat[0,1] + '_' + df[0].iat[1,1] +".csv")
